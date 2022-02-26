@@ -1,1 +1,2 @@
 print('Coba')
+print('Jajal')
