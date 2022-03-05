@@ -43,7 +43,24 @@ def get_total_pages():
     total = int(max(total_pages))
     return total
 
+def get_all_item():
+    params = {
+        'q' : 'Python Developer',
+        'l' : 'New York State',
+
+    }
+    res = requests.get(url, params=params, headers=headers)
+
+    with open('temp/res.html','w+') as outfile:
+        outfile.write(res.text)
+        outfile.close()
+
+    soup = BeautifulSoup(res.text, 'html.parser')
+
+    #scaraping prosess
+    contents = soup.find_all('table', 'jobCard_mainContent big6_visualChanges')
+    print(contents)
 
 if __name__ == '__main__':
-    get_total_pages()
+    get_all_item()
 
