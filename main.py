@@ -18,10 +18,10 @@ res = requests.get(url, params=params, headers=headers)
 
 
 #mendapatkan total page secara dinamis
-def get_total_pages():
+def get_total_pages(query,location):
     params = {
-    'q' : 'Python Developer',
-    'l' : 'New York State',
+    'q' : query,
+    'l' : location,
 
     }
     res = requests.get(url, params=params, headers=headers)
@@ -46,10 +46,10 @@ def get_total_pages():
     total = int(max(total_pages))
     return total
 
-def get_all_item():
+def get_all_item(query,location):
     params = {
-        'q' : 'Python Developer',
-        'l' : 'New York State',
+        'q' : query,
+        'l' : location,
 
     }
     res = requests.get(url, params=params, headers=headers)
