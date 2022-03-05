@@ -1,4 +1,5 @@
 import os
+import json
 import requests
 from bs4 import BeautifulSoup
 
@@ -60,7 +61,7 @@ def get_all_item():
 
     #scaraping prosess
     contents = soup.find_all('table', 'jobCard_mainContent big6_visualChanges')
-
+    jobs_list = []
     for item in contents:
         title = item.find('h2', 'jobTitle').text
         company = item.find('span','companyName')
@@ -69,7 +70,27 @@ def get_all_item():
             company_link = site + company.find('a')['href']
         except:
             company_link = 'Link is Not Available'
-        print(company_link)
+
+        #sorting data
+        data_dict = {
+            'title' : title,
+            'company name' : company_name,
+            'link' : company_link
+        }
+        jobs_list.append(data_dict)
+
+    #writing json file
+
+    try:
+        os.mkdir('json_result')
+    except FileExistsError:
+        pass
+
+    #membuat file json
+    with open('json_result/job_list.json','w+') as json_data:
+        json.dump(jobs_list, json_data)
+    print('json created')
+
 if __name__ == '__main__':
     get_all_item()
 
