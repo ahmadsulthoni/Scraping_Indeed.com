@@ -39,3 +39,4 @@ def get_total_pages():
 
 if __name__ == '__main__':
     get_total_pages()
+
