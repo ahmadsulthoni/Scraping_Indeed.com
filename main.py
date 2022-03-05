@@ -3,6 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 
 url = 'https://www.indeed.com/jobs?'
+site = 'https://www.indeed.com'
 params = {
     'q' : 'Python Developer',
     'l' : 'New York State',
@@ -62,8 +63,13 @@ def get_all_item():
 
     for item in contents:
         title = item.find('h2', 'jobTitle').text
-        print(title)
-
+        company = item.find('span','companyName')
+        company_name = company.text
+        try:
+            company_link = site + company.find('a')['href']
+        except:
+            company_link = 'Link is Not Available'
+        print(company_link)
 if __name__ == '__main__':
     get_all_item()
 
