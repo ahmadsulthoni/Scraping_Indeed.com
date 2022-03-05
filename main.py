@@ -34,7 +34,8 @@ def get_total_pages():
 
     #scraping step
     soup = BeautifulSoup(res.text, 'html.parser')
-    print(soup.prettify())
+    pagination = soup.find('ul','pagination-list')
+    print(pagination)
 
 
 if __name__ == '__main__':
