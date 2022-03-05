@@ -2,6 +2,7 @@ import os
 import json
 import requests
 from bs4 import BeautifulSoup
+import pandas as pd
 
 url = 'https://www.indeed.com/jobs?'
 site = 'https://www.indeed.com'
@@ -91,6 +92,13 @@ def get_all_item():
         json.dump(jobs_list, json_data)
     print('json created')
 
+    #create csv
+    df = pd.DataFrame(jobs_list)
+    df.to_csv('indeed_data.csv',index=False)
+    df.to_excel('indeed_data.xlsx',index=False)
+
+    # data created
+    print('Data Created Success')
 if __name__ == '__main__':
     get_all_item()
 
