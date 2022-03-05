@@ -59,7 +59,10 @@ def get_all_item():
 
     #scaraping prosess
     contents = soup.find_all('table', 'jobCard_mainContent big6_visualChanges')
-    print(contents)
+
+    for item in contents:
+        title = item.find('h2', 'jobTitle').text
+        print(title)
 
 if __name__ == '__main__':
     get_all_item()
