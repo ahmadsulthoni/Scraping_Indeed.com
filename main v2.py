@@ -125,7 +125,7 @@ def run():
     except FileExistsError:
         pass
 
-    with open('report/{}.json'.format(query), 'w+') as final_data:
+    with open('reports/{}.json'.format(query), 'w+') as final_data:
         json.dump(final_result, final_data)
 
     print('Data Json Created')
